@@ -5,55 +5,56 @@
 #ifndef CMAKESFMLPROJECT_VEC2_H
 #define CMAKESFMLPROJECT_VEC2_H
 #include <cmath>
+#include "precision.h"
 
-struct Vec2f {
-    float x;
-    float y;
+struct Vec2 {
+    real x;
+    real y;
 
-    Vec2f() : x(0.0f), y(0.0f) {}
-    Vec2f(float x, float y) : x(x), y(y) {}
+    Vec2() : x(0.0f), y(0.0f) {}
+    Vec2(real x, real y) : x(x), y(y) {}
 
-    Vec2f Zero() {
+    Vec2 Zero() {
         return {0.0f, 0.0f};
     }
 
-    Vec2f operator+(Vec2f& a) {
+    Vec2 operator+(Vec2& a) {
         return {this->x + a.x, this->y + a.y};
     }
 
-    Vec2f operator+=(Vec2f& a) {
+    Vec2 operator+=(Vec2& a) {
         this->x += a.x;
         this->y += a.y;
         return *this;
     }
 
-    Vec2f operator-(Vec2f& a) {
+    Vec2 operator-(Vec2& a) {
         return {this->x - a.x, this->y - a.y};
     }
 
-    Vec2f operator-() {
+    Vec2 operator-() {
         return {-this->x, -this->y};
     }
 
-    Vec2f operator-=(Vec2f& a) {
+    Vec2 operator-=(Vec2& a) {
          return *this - a;
     }
 
-    Vec2f operator*(float scalar) {
+    Vec2 operator*(real scalar) {
         return {this->x * scalar, this->y * scalar};
     }
 
-    Vec2f operator*=(float scalar) {
+    Vec2 operator*=(real scalar) {
         this->x *= scalar;
         this->y *= scalar;
         return *this;
     }
 
-    Vec2f operator/(float scalar) {
+    Vec2 operator/(real scalar) {
         return {this->x / scalar, this->y / scalar};
     }
 
-    Vec2f operator/=(float scalar) {
+    Vec2 operator/=(real scalar) {
         this->x /= scalar;
         this->y /= scalar;
         return *this;
@@ -63,7 +64,7 @@ struct Vec2f {
     // with the "==" operator
 
     float epsilon = 0.005f;
-    bool Vec2f operator==(Vec2f& a) {
+    bool operator==(Vec2& a) {
         return std::abs(this->x - a.x) < epsilon &&
                std::abs(this->y - a.y) < epsilon;
     }

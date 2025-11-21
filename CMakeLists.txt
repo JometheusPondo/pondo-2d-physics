@@ -1,6 +1,9 @@
 cmake_minimum_required(VERSION 3.28)
 project(CMakeSFMLProject LANGUAGES CXX)
 
+option(USE_DOUBLE "Use double precision floating point nums" ON)
+
+
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 include(FetchContent)
@@ -13,6 +16,11 @@ FetchContent_Declare(SFML
 FetchContent_MakeAvailable(SFML)
 
 add_executable(main src/main.cpp
-        src/vec2.h)
+        src/vec2.h
+        src/precision.h)
 target_compile_features(main PRIVATE cxx_std_17)
 target_link_libraries(main PRIVATE SFML::Graphics)
+
+if(USE_DOUBLE)
+    target_compile_definitions(main PRIVATE USE_DOUBLE_PRECISION)
+endif()
